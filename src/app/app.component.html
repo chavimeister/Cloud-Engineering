@@ -1,0 +1,125 @@
+<div class="page-shell">
+  <div class="glitter-layer"></div>
+  <div class="grid-layer"></div>
+  <div class="sparkle-band"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Angular static web app. Aucun bon gout detecte.</p>
+    <h1>LICORNE<br> CACA<br> FIESTA</h1>
+    <p class="hero-copy">
+      Une parade internet radioactive, pleine de sucre visuel, de nuages creme-fraise
+      et d'un mini-jeu absurde ou une licorne saute au-dessus de cacas avec la barre espace.
+    </p>
+
+    <div class="hero-actions">
+      <button class="party-button" type="button" (click)="startGame()">
+        Demarrer le chaos
+      </button>
+      <a class="party-button secondary" href="#jeu">Aller au jeu</a>
+    </div>
+
+    <div class="ticker" aria-label="Messages urgents">
+      <div class="ticker-track">
+        <span *ngFor="let hype of hypeList">{{ hype }}</span>
+        <span *ngFor="let hype of hypeList">{{ hype }}</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="intro-card">
+      <div>
+        <p class="section-label">Concept officiel</p>
+        <h2>Un carnaval web volontairement trop charge</h2>
+        <p>
+          Tout ici assume la surenchere: palette bonbon, typo de foire, etoiles qui clignotent,
+          et une mascotte equine qui refuse obstinement les accidents fecaux.
+        </p>
+      </div>
+
+      <div class="cloud-cluster" aria-hidden="true">
+        <div
+          *ngFor="let cloud of cloudStyles"
+          class="candy-cloud"
+          [style.top]="cloud.top"
+          [style.left]="cloud.left"
+          [style.animation-delay]="cloud.delay"
+          [style.animation-duration]="cloud.duration"
+        ></div>
+      </div>
+    </section>
+
+    <section class="feature-strip">
+      <article class="feature-card">
+        <span class="feature-kicker">Vibe</span>
+        <h3>Kermesse cosmique</h3>
+        <p>Le site semble avoir ete dessine dans une confiserie branchee sur un tube cathodique.</p>
+      </article>
+
+      <article class="feature-card tilt">
+        <span class="feature-kicker">Stack</span>
+        <h3>Angular pur sucre</h3>
+        <p>Standalone, statique, facile a deployer, et suffisamment propre pour survivre a la catastrophe visuelle.</p>
+      </article>
+
+      <article class="feature-card">
+        <span class="feature-kicker">Gameplay</span>
+        <h3>Licorne vs cacas</h3>
+        <p>Barre espace pour sauter. Si tu rates, la gloire sent tout de suite moins bon.</p>
+      </article>
+    </section>
+
+    <section id="jeu" class="game-card">
+      <div class="game-copy">
+        <p class="section-label">Mini-jeu arcade</p>
+        <h2>Survis a la piste arc-en-ciel</h2>
+        <p>
+          Appuie sur <strong>Espace</strong> pour lancer une partie, puis continue a sauter
+          au bon moment pour eviter les petits tas suspects.
+        </p>
+
+        <div class="score-panel">
+          <div>
+            <span>Score</span>
+            <strong>{{ score }}</strong>
+          </div>
+          <div>
+            <span>Record</span>
+            <strong>{{ bestScore }}</strong>
+          </div>
+          <div>
+            <span>Etat</span>
+            <strong>{{ gameState }}</strong>
+          </div>
+        </div>
+
+        <p class="status-line">{{ flashMessage }}</p>
+      </div>
+
+      <div class="game-area" [class.is-active]="gameState === 'running'">
+        <div class="sunburst"></div>
+        <div class="rainbow-track"></div>
+
+        <div class="unicorn" [style.bottom.px]="unicornY" [class.airborne]="isJumping">
+          <div class="horn"></div>
+          <div class="mane"></div>
+          <div class="eye"></div>
+          <div class="cheek"></div>
+          <div class="leg front"></div>
+          <div class="leg back"></div>
+          <div class="tail"></div>
+        </div>
+
+        <div
+          *ngFor="let obstacle of obstacles; trackBy: trackObstacle"
+          class="poop"
+          [style.left.px]="obstacle.x"
+          [style.width.px]="42 + obstacle.size"
+          [style.height.px]="46 + obstacle.size"
+        >
+          <span class="poop-sparkle"></span>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
